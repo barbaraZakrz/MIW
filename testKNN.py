@@ -1,3 +1,4 @@
+import math
 
 class Probki:
     lista_probek = []
@@ -42,8 +43,6 @@ class Probki:
         return Probki.lista_probek
 
 
-
-
     def __repr__(self):
         return 'Probka({}, grupa: {}'.format(self.par, self.grupa)
 
@@ -52,6 +51,71 @@ Probki.wczytaj_z_pliku()
 print(Probki.lista_probek)
 Probki.normalizacja()
 print(Probki.lista_probek)
+
+def euklides(obiekt1, obiekt2):
+    suma = 0
+    for i in range(len(obiekt1.par)):
+        suma += math.pow(obiekt1.par[i] - obiekt2.par[i], 2)
+    return math.sqrt(suma)
+
+print(euklides(Probki.lista_probek[0], Probki.lista_probek[1]))
+
+def knn(k, test, listaO):
+    lista = {}
+    grupy = {}
+    for i in range(1, len(listaO)):
+        lista.update({euklides(test, listaO[i]):listaO[i].grupa} )
+    lista = dict(sorted(lista.items()))
+    #print(lista)
+    for m in list(lista.values())[:k]:
+        if m not in grupy.keys():
+            grupy.update({m:1})
+        else:
+            grupy[m] +=1
+    grupy = list(dict(sorted(grupy.items())))
+    return grupy[-1]
+
+# def knn(k):
+#     lista = {}
+#     grupy = {}
+#     for i in range(1, len(Probki.lista_probek)):
+#         lista.update({euklides(Probki.lista_probek[0], Probki.lista_probek[i]):Probki.lista_probek[i].grupa} )
+#     #lista = dict(sorted(lista.items(), key=lambda item: item[1]))
+#     lista = dict(sorted(lista.items()))
+#     print(lista)
+#     for m in list(lista.values())[:k]:
+#         if m not in grupy.keys():
+#             grupy.update({m:1})
+#         else:
+#             grupy[m] +=1
+#     grupy = list(dict(sorted(grupy.items())))
+#     return grupy[-1]
+
+def jeden(listaO):
+    t = 0
+    f = 0
+    for i in range(len(listaO)):
+        test1 = listaO.pop(i)
+        if knn(3, test1, listaO) == test1.grupa:
+            t +=1
+        else:
+            f+=1
+        listaO.append(test1)
+    print(t, f, len(listaO), t/len(listaO))
+
+print('================')
+#print(knn(3,Probki.lista_probek[0], Probki.lista_probek))
+jeden(Probki.lista_probek)
+print('==============')
+
+a = {1:2,4:2, 3:1, 2:5,7:1, 8:3}
+a = dict(sorted(a.items(), key=lambda item: item[1]))
+b =sorted(a.items())
+print(a)
+print(b)
+
+
+
 
 
 
