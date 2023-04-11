@@ -33,7 +33,6 @@ def generate_children(node):
             node.dzieci.append(Node("Protagonista", 6, node.suma, node))
 
 def graff(node):
-    # while node.suma <21:
         generate_children(node)
         for child in node.dzieci:
             if child.suma >= 21:
@@ -43,18 +42,30 @@ def graff(node):
 
 
 root = Root("Protagonista")
-print(root)
+# print(root)
 
 graff(root)
-print(*Node.graf, sep='\n')
+# print(*Node.graf, sep='\n')
 
-print(len(Node.graf))
-print(len(Root.graf))
+# print(len(Node.graf))
+# print(len(Root.graf))
 
-for elem in Root.graf:
-    if elem.suma == 21:
-        print("REMIS")
-    if elem.suma > 21:
-        print(f'Wygrana {elem.rodzic.name}')
+# for elem in Root.graf:
+#     if elem.suma == 21:
+#         print("REMIS")
+#     if elem.suma > 21:
+#         print(f'Wygrana {elem.rodzic.name}')
+
+def minmax():
+    lista = []
+    for elem in Root.graf:
+        if elem.suma == 21:
+            lista.append()
+
+
+
+
+
+
 
 
