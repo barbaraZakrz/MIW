@@ -100,6 +100,7 @@ def knn(k, test, listaO, metryka):
             wystapienia.update({m:1})
         else:
             wystapienia[m] +=1
+
     return sorted(wystapienia.items(), key=lambda item: item[1])[-1][0]
 
 
