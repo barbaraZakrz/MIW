@@ -46,7 +46,6 @@ class Probka:
         return 'Probka({}, klasa: {}'.format(self.wartosci, self.klasa)
 
 
-
 def euklides(obiekt1, obiekt2):
     suma = 0
     for i in range(len(obiekt1.wartosci)):

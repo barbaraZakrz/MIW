@@ -33,18 +33,18 @@ class Node:
             for child in self.children:
                 print(child)
             print("},")
-            sortedChildren = sorted(self.children.copy(), key=lambda x: x.result, reverse=self.protagonist)
+            sortedChildren = sorted(self.children.copy(), key=lambda x: x.wynik, reverse=self.protagonist)
             sortedChildren[0].printRoute()
 
 def minMax(node):
     if node.result is not None:
-        return node.result
+        return node.wynik
     results = []
     for child in node.children:
         results.append(minMax(child))
     # results.sort(reverse=(not node.protagonist))
     results = sorted(results, reverse=node.protagonist)
-    node.result = results[0]
+    node.wynik = results[0]
     return results[0]
 
 root = Node(False)
