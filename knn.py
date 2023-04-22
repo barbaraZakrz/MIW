@@ -82,12 +82,16 @@ def logarytm(obiekt1, obiekt2):
     return suma
 
 def knn(k, test, listaP, metryka):
+#ZMIANA
     odleglosci = {}  # {odleglosc: klasa}
     wystapienia = {}  # {klasa: wystapienia}
 
+#ZMIANA
     for i in range(0, len(listaP)):
-        odleglosci.update({metryka(test, listaP[i]):listaP[i].klasa})
+        # odleglosci.update({metryka(test, listaP[i]):listaP[i].klasa})
+        odleglosci[metryka(test, listaP[i])] = listaP[i].klasa
     odleglosci = dict(sorted(odleglosci.items())[:k])
+
 
     for m in list(odleglosci.values()):
         if m not in wystapienia.keys():

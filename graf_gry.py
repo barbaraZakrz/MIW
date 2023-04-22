@@ -1,14 +1,26 @@
 class Node:
-    def __init__(self, protagonista, wartosc=0, suma=0, rodzic=None):
+    #ZMIANA
+    def __init__(self, protagonista, wartosc=17, suma=0, rodzic=None):
         self.protagonista = protagonista
         self.wartosc = wartosc
         self.suma = suma + wartosc
         self.rodzic = rodzic
         self.dzieci = []
-        if self.suma < 21:
+        #ZMIANA
+        if self.suma < 21 and self.protagonista:
+            # self.dzieci.append(Node(not protagonista, 3, self.suma, self))
+            # self.dzieci.append(Node(not protagonista, 4, self.suma, self))
+            # self.dzieci.append(Node(not protagonista, 5, self.suma, self))
+            self.dzieci.append(Node(not protagonista, 3, self.suma, self))
             self.dzieci.append(Node(not protagonista, 4, self.suma, self))
+            self.wynik = None
+        #ZMIANA
+        elif self.suma < 21 and self.protagonista is False:
+            # self.dzieci.append(Node(not protagonista, 3, self.suma, self))
+            # self.dzieci.append(Node(not protagonista, 4, self.suma, self))
+            # self.dzieci.append(Node(not protagonista, 5, self.suma, self))
+            self.dzieci.append(Node(not protagonista, 2, self.suma, self))
             self.dzieci.append(Node(not protagonista, 5, self.suma, self))
-            self.dzieci.append(Node(not protagonista, 6, self.suma, self))
             self.wynik = None
         elif self.suma == 21:
             self.wynik = 0
@@ -27,6 +39,7 @@ class Node:
         for dziecko in self.dzieci:
             dziecko.wyswietl()
 
+
     def wyswietl_droge(self):
         print(self)
         if(self.dzieci):
@@ -43,11 +56,12 @@ def minMax(node):
     results = []
     for dziecko in node.dzieci:
         results.append(minMax(dziecko))
+    #print(results)
     results = sorted(results, reverse=node.protagonista)
     node.wynik = results[0]
     return results[0]
 
-root = Node(True)
+root = Node(False)
 # root.wyswietl()
 minMax(root)
 # root.wyswietl()
